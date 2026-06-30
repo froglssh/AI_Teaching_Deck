@@ -1,0 +1,51 @@
+{
+  "slide": 138,
+  "title": "利用 AI 分段生成解題教學投影片",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"Chinese\",\n  \"slide_number\": 138,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nRedesign AI-assisted teaching slides to be the most comprehensive guide based on original PDF.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Extensive presentation on using AI/IA tools (ChatGPT, Gemini, Copilot, NotebookLM, Felo Search) in high school biology teaching, homeroom, administration, question generation, and grading.\",\n    \"core_claim\": \"AI should serve as an amplifier for teachers (Intelligence Augmentation) rather than just simple automation.\",\n    \"canonical_terms\": [\n      \"IA\",\n      \"智能增強\",\n      \"生物教學\",\n      \"NotebookLM\",\n      \"Felo Search\",\n      \"Kahoot\",\n      \"Quizizz\"\n    ]\n  }\n}\n\n## Global Style\n{\n  \"name\": \"清爽專業風\",\n  \"visual_direction\": \"clean modern professional deck, calm technical presentation, structured evidence-driven layout, readable pragmatic visual system, light background with crisp hierarchy\",\n  \"color_palette\": \"Lishan Green (forest green #1E5631) and Tech Blue (#2563EB) primary brand colors on warm white background\",\n  \"typography\": \"clear bold sans-serif, report-like and authoritative Chinese typography\"\n}\n\n## Style Reference Images To Inspect\n\n- Style Reference 1: /Users/froglssh/Library/CloudStorage/GoogleDrive-frog@lssh.tp.edu.tw/我的雲端硬碟/0AI應用/0-AI輔助教學/AI_Teaching_Deck/origin_image/slide_03.png — approved sample slide style reference; match style only; do not copy layout or content\n\nInspect these images before generation to understand the approved deck style. Do not pass them to the image backend as input images unless this slide explicitly lists them under Input Images.\n\n## Slide\n{\n  \"number\": 138,\n  \"title\": \"利用 AI 分段生成解題教學投影片\",\n  \"role\": \"tutorial\",\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"利用 AI 分段生成解題教學投影片\",\n  \"key_points\": [\n    \"工作流：不要一次把 40 題丟給簡報軟體。先將考卷依單元（如：細胞學 10 題、遺傳學 10 題）分類\",\n    \"生成：分批次導入 Gamma AI，請它生成「第一單元：細胞構造段考題解析簡報」\",\n    \"成果：每道題配一頁投影片，左邊放題目與選項，右邊放結構化的解題步驟與錯因分析\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Style Reference Rule\nUse the approved sample-slide style reference as visual guidance only. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it. For normal new slide generation, use the generate endpoint and express the inspected style through the prompt instead of attaching the sample as an edit input.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_138.png",
+  "candidate_out": "drafts/slide_138_candidate.png",
+  "input_images": [],
+  "style_reference_images": [
+    {
+      "path": "/Users/froglssh/Library/CloudStorage/GoogleDrive-frog@lssh.tp.edu.tw/我的雲端硬碟/0AI應用/0-AI輔助教學/AI_Teaching_Deck/origin_image/slide_03.png",
+      "role": "approved sample slide style reference",
+      "fidelity": "match style only; do not copy layout or content"
+    }
+  ],
+  "requires_context_images": false,
+  "expected_generation_mode": "generate",
+  "expected_backend": "scripts/image_gen.py --backend auto (codex-oauth)",
+  "sample_generation_method": {
+    "backend_used": "scripts/image_gen.py --backend auto (codex-oauth)",
+    "tool_name": "scripts/image_gen.py",
+    "mode": "generate",
+    "prompt_source": "approved sample slide 3",
+    "size": "16:9 landscape",
+    "quality": "medium",
+    "approved_sample_path": "/Users/froglssh/Library/CloudStorage/GoogleDrive-frog@lssh.tp.edu.tw/我的雲端硬碟/0AI應用/0-AI輔助教學/AI_Teaching_Deck/origin_image/slide_03.png",
+    "input_context_preparation": "inspect style references before generation; pass strict input assets with edit --image only when a slide job lists input_images",
+    "handoff_rule": "Subagents must use this same backend/tool/config; use generate for new slides unless the assigned job has strict input_images or is a repair."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "default_mode": "generate",
+    "use_edit_only_when": [
+      "input_images is non-empty",
+      "repairing an existing generated slide"
+    ],
+    "must_inspect_style_reference_images": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}
