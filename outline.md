@@ -959,3 +959,349 @@
   - Quizizz AI (Wayground)：支援複雜的題型（如拖拉配對、填空），AI 分析 PDF 材料的能力強。
   - Edcafe AI：整合性出題，支援生成多種教學模式的隨堂小測驗。
 
+
+## 第十章：測驗考試出題與改題技術 (續)
+
+### Slide 109: Kahoot! AI：分析教材快速生成趣味題目
+- **Layout role**: tutorial
+- **Title**: Kahoot! AI：分析教材快速生成趣味題目
+- **Key points**:
+  - 步驟：在 Kahoot! 建立新測驗，選擇「AI 出題工具」，貼入「呼吸作用的糖解作用與檸檬酸循環」課文文字
+  - 自動生題：AI 會在 30 秒內自動抓取核心知識點，生成 10 題具備四個選項的選擇題
+  - 設定：可手動調整每題的限時時間與積分加倍，一鍵發佈給全班玩
+- **Required images**:
+  - extracted source image asset `![page_111_img_1.png](assets/extracted/page_111_img_1.png)`
+
+### Slide 110: Kahoot!：上傳 PDF 講義直接建題庫
+- **Layout role**: tutorial
+- **Title**: Kahoot!：上傳 PDF 講義直接建題庫
+- **Key points**:
+  - 操作：直接將本單元的 PDF 講義上傳至 Kahoot! AI 介面
+  - 智慧解析：AI 會閱讀整份 PDF，並過濾掉頁首頁尾等雜訊，只針對內文的關鍵事實（如：粒線體雙層膜、內膜摺疊形成皺褶）生成測驗題目
+  - 效益：免去手動輸入題目與答案的繁複步驟，備課效率提升 80%
+
+### Slide 111: Wayground：Quizizz 的強大 AI 命題引擎
+- **Layout role**: tool card
+- **Title**: Wayground：Quizizz 的強大 AI 命題引擎
+- **Key points**:
+  - 定位：Quizizz 推出的全新 AI 命題助手 Wayground
+  - 特色：除了傳統選擇題外，更能生成「繪圖題」、「開放式問題」與「音訊回答題」
+  - 智慧改寫：可選取既有題目，請 AI 調整其語氣、增加幽默感或修改難易度等級，使測驗更有趣
+
+### Slide 112: Quizizz AI：上傳 PDF 批量生成多元考題
+- **Layout role**: case study
+- **Title**: Quizizz AI：上傳 PDF 批量生成多元考題
+- **Key points**:
+  - 流程：將「人體免疫防線」PDF 講義上傳至 Quizizz AI 介面
+  - 產出結果：AI 自動生成 5 題選擇題、3 題配對題（病原體與防線等級）以及 2 題填空題
+  - 教學效益：提供比 Kahoot! 更多層次的評量題型，更適合進行形成性評量 (Formative Assessment)
+- **Required images**:
+  - extracted source image asset `![page_114_img_1.png](assets/extracted/page_114_img_1.png)`
+
+### Slide 113: Edcafe AI：多合一隨堂評量產生器
+- **Layout role**: tool card
+- **Title**: Edcafe AI：多合一隨堂評量產生器
+- **Key points**:
+  - 功能：支持從 YouTube 影片、網頁文章或文字輸入，快速生成互動式測驗
+  - 特色：生成速度極快，且產出的題目可無縫整合至 Edcafe 學習步道中
+  - 教師應用：播放完一段 5 分鐘的科學影片後，立即使用 Edcafe AI 生成 3 題觀後檢測
+
+### Slide 114: 提示詞引導：如何命令 AI 出一套好題目
+- **Layout role**: tutorial
+- **Title**: 提示詞引導：如何命令 AI 出一套好題目
+- **Key points**:
+  - 出題 Prompt 公式：「[角色：高中生物老師] + [任務：根據以下文章出題] + [題型規範：3題單選+2題多選，每題5個選項] + [輸出格式：需包含正確答案與詳細解析]」
+  - 避坑指南：必須在提示詞中明確寫明「所有選項文字需精確，不可出現模稜兩可的情況」
+- **Required images**:
+  - extracted source image asset `![page_116_img_1.png](assets/extracted/page_116_img_1.png)`
+
+### Slide 115: 為什麼我們需要 AI 協助「改題」？
+- **Layout role**: pedagogical value
+- **Title**: 為什麼我們需要 AI 協助「改題」？
+- **Key points**:
+  - 痛點：傳統題庫的題目往往流於死記硬背，且題型單一
+  - AI 改題優勢：
+  - 快速調整難易度以適應不同程度的學生（差異化教學）
+  - 轉換題型（如單選改多選或問答），培養學生更深層的認知能力
+  - 融入生活情境，將傳統死背題改寫為符合素養導向的探究試題
+
+### Slide 116: 實作：單選題轉換為相同概念的新單選題
+- **Layout role**: tutorial
+- **Title**: 實作：單選題轉換為相同概念的新單選題
+- **Key points**:
+  - 原始題目：關於「菌根」的敘述，何者正確？（單選）
+  - AI 改寫指令：「請幫我保留這題的考點（菌根是真菌與植物根部的互惠共生關係），但修改題目的敘述與所有干擾選項，生成一題全新的單選題」
+  - 成果：成功生成一題語意更現代、選項干擾度更佳的新題目，避免學生死背考古題答案
+
+### Slide 117: 實作：單選題轉換為多重選擇題
+- **Layout role**: tutorial
+- **Title**: 實作：單選題轉換為多重選擇題
+- **Key points**:
+  - 考點分析：菌根共生中，真菌提供水分與礦物質（磷、氮），植物提供有機物（糖分）
+  - AI 改寫成果：將原本「何者正確」的單選題，改寫為需要同時判斷真菌與植物雙向利益關係的多重選擇題（多選，有5個選項）
+  - 教學目的：訓練學生全方位思考，防止學生只找「最標準的一個答案」而忽略其他正確科學事實
+
+### Slide 118: 實作：限制正確選項數量的多選題改寫
+- **Layout role**: tutorial
+- **Title**: 實作：限制正確選項數量的多選題改寫
+- **Key points**:
+  - 教學實務：在大考中，多選題常有「應選三項」等提示，這能降低猜題率並引導學生建立信心
+  - AI 指令：「請將關於菌根的單選題改寫為一題多選題，共有 5 個選項，其中**必須剛好有 3 個正確選項**，並請列出這三個正確選項的詳細判斷理由」
+  - 成果：AI 精準輸出符合規格的考題，干擾項邏輯嚴密
+
+### Slide 119: 實作：選擇題改寫為開放式問答題
+- **Layout role**: tutorial
+- **Title**: 實作：選擇題改寫為開放式問答題
+- **Key points**:
+  - 目的：為了訓練學生的探究思考與科學寫作能力，需要將簡單的選擇題改為非選擇題
+  - 改寫成果：
+  - 問題：「請根據植物根部與菌根真菌的互動機制，詳細說明為什麼在乾旱或貧瘠的土壤中，擁有菌根的植物存活率顯著高於無菌根的植物？請至少從『水分吸收』與『礦物質獲取』兩個維度進行申論」
+  - 參考答案與評分標準：AI 自動生成三階評分規準 (Rubrics)，方便教師改卷
+
+### Slide 120: 實作：為傳統題目加入科學情境文本
+- **Layout role**: case study
+- **Title**: 實作：為傳統題目加入科學情境文本
+- **Key points**:
+  - 改造前：單純詢問「菌根的功能為何？」
+  - 改造後：AI 撰寫了一段 250 字的科學情境短文，介紹「科學家如何利用同位素標記追蹤菌根真菌在森林地下網絡（Wood Wide Web）中輸送磷元素的動態過程」
+  - 考題設計：根據該短文，設計 2 題閱讀理解單選題，考察學生從文本中提取科學資訊與推論的能力
+- **Required images**:
+  - extracted source image asset `![page_123_img_1.png](assets/extracted/page_123_img_1.png)`
+
+### Slide 121: 試題成果：菌根共生關係閱讀測驗題
+- **Layout role**: case study
+- **Title**: 試題成果：菌根共生關係閱讀測驗題
+- **Key points**:
+  - 試題呈現：提供完整的閱讀短文、試題題目、選項
+  - 題目範例：根據文本，植物提供給真菌的主要物質是什麼？（選項包含葡萄糖、無機鹽、水分、二氧化碳等）
+  - 教師點評：此類題目能有效評量學生「閱讀理解」與「生物學基礎知識」的整合能力
+
+### Slide 122: 實例：以「鑲嵌型胚胎小鼠實驗」設計高階題
+- **Layout role**: case study
+- **Title**: 實例：以「鑲嵌型胚胎小鼠實驗」設計高階題
+- **Key points**:
+  - 情境來源：取材自頂尖發育生物學期刊的真實論文簡介
+  - 文本內容：介紹研究人員如何建立「染色體異常細胞的鑲嵌型小鼠胚胎模型」，並追蹤這些異常細胞在胚胎發育過程中的命運（被正常細胞排擠或凋亡）
+  - 教學目的：讓高中生提早接觸真實的科學探究情境，訓練科學探究素養
+- **Required images**:
+  - extracted source image asset `![page_125_img_1.png](assets/extracted/page_125_img_1.png)`
+
+### Slide 123: 提示詞設定：針對長文一次生成多種題型
+- **Layout role**: tutorial
+- **Title**: 提示詞設定：針對長文一次生成多種題型
+- **Key points**:
+  - 指令設計：提供「鑲嵌型胚胎」長文後，下達精細指令：「請以剛剛給你的長篇文章內容，出 5 個單一選擇題，每一題 5 個選項；出 3 個多重選擇題，每題至少有 2 個正確答案；並請提供所有題目的標準答案與詳細解析」
+  - 成果評估：AI 成功產出結構完整的試卷草稿，且題目深度符合高中生物加深加廣課程水平
+
+### Slide 124: 第一步：擷取科學影片逐字稿
+- **Layout role**: tutorial
+- **Title**: 第一步：擷取科學影片逐字稿
+- **Key points**:
+  - 工具：Chrome 外掛「YouTube Summary with ChatGPT & Claude」
+  - 操作：播放一段關於「綠葉海天牛 (Elysia chlorotica) 奪取葉綠體進行光合作用」的優質科學影片，點擊外掛一鍵擷取整段影片的英文或中文逐字稿
+  - 效益：快速將生動的影音資源轉化為可供出題的「文字語料庫」
+- **Required images**:
+  - extracted source image asset `![page_127_img_1.png](assets/extracted/page_127_img_1.png)`
+
+### Slide 125: 第二步：根據影片逐字稿生成素養題
+- **Layout role**: case study
+- **Title**: 第二步：根據影片逐字稿生成素養題
+- **Key points**:
+  - 考點提取：綠葉海天牛作為「混合營養 (Mixotroph)」生物，能從食物（濱海無隔藻）中盜取葉綠體（盜食質體現象 kleptoplasty），並在體內維持光合作用長達數月
+  - 命題成果：AI 根據影片逐字稿中關於「海天牛外觀像綠葉、生活在北美東部鹽沼」等描述，設計了一套探究海天牛生存策略的閱讀測驗題
+  - 價值：讓學生體會到「生物學知識就在有趣的科普影片中」
+
+### Slide 126: Chrome AI 側邊欄：網頁文章即時命題
+- **Layout role**: tutorial
+- **Title**: Chrome AI 側邊欄：網頁文章即時命題
+- **Key points**:
+  - 情境：教師在 Chrome 瀏覽器閱讀一篇關於「2025年最新癌症免疫療法」的科學報導
+  - 操作：開啟 Chrome AI 側邊欄，直接輸入「請幫我閱讀目前開啟的網頁內容，並針對報導中的核心機制（如 CAR-T 細胞技術）設計 3 題高中生水平的選擇題」
+  - 成果：不需複製貼上，AI 直接在側邊欄產出題目，備課流暢無比
+
+### Slide 127: Gemini Canvas 與圖表模型聯動出題
+- **Layout role**: case study
+- **Title**: Gemini Canvas 與圖表模型聯動出題
+- **Key points**:
+  - 操作：在 Google AI Studio 中，利用 Gemini Canvas 模式，上傳一張手繪的「腎單位（腎小球、腎小囊、腎小管）結構示意圖」
+  - 出題對話：輸入「請根據此圖，設計一題選擇題。提問：『請問圖中標示為 B 的構造名稱為何？它有什麼生理功能？』」
+  - 特色：結合視覺影像與文字邏輯，考驗學生的圖表識讀與分析能力
+- **Required images**:
+  - extracted source image asset `![page_130_img_1.png](assets/extracted/page_130_img_1.png)`
+
+
+## 第十一編：專業解題與自建答疑資料庫
+
+### Slide 128: Google AI Studio：影片模型深度出題
+- **Layout role**: tutorial
+- **Title**: Google AI Studio：影片模型深度出題
+- **Key points**:
+  - 先進應用：將一段 3 分鐘的「有絲分裂細胞分裂縮時攝影影片」直接拖入 Google AI Studio
+  - 提示詞：「請仔細觀看這段影片，並針對影片第 45 秒處所發生的染色體行為（染色體排列在赤道板上，即中期），出一題探究問題，並附上解答」
+  - 價值：真正的多模態 AI 應用，大幅擴展了考題素材的來源維度
+  - --
+
+### Slide 129: 第十一編：考試解答與解析（建立解題知識庫）
+- **Layout role**: section divider
+- **Title**: 第十一編：考試解答與解析（建立解題知識庫）
+- **Key points**:
+  - AI 輔助試卷分析與高階解題提示詞設定
+  - Felo Search 與 NotebookLM 在建立解題庫的協同
+  - 實驗題與圖表題的 AI 詳解圖說生成
+
+### Slide 130: AI 輔助解答工具圖譜
+- **Layout role**: overview
+- **Title**: AI 輔助解答工具圖譜
+- **Key points**:
+  - ChatGPT：擅長大批量考卷的分析、概念總結與結構化詳解生成。
+  - Felo Search / Perplexity：當遇到需要確認最新科學事實的難題時，進行聯網學術查證，避免 AI 幻覺。
+  - NotebookLM：匯入歷屆考卷，建立學生專屬的「段考錯題解惑知識庫」。
+
+### Slide 131: 第一步：分析整份試卷的考試特點
+- **Layout role**: case study
+- **Title**: 第一步：分析整份試卷的考試特點
+- **Key points**:
+  - 實作：將整份段考生物試卷 PDF 上傳至 ChatGPT
+  - 分析範疇：AI 自動總結這份考試的主要概念分布、難易度比例（記憶題、理解題、應用分析題的佔比），以及學生容易卡關的陷阱題
+  - 教學反饋：幫助教師快速了解本學期段考的命題品質，作為後續補救教學的依據
+
+### Slide 132: 第二步：一鍵生成整份試卷的逐題解析
+- **Layout role**: tutorial
+- **Title**: 第二步：一鍵生成整份試卷的逐題解析
+- **Key points**:
+  - 挑戰：為段考考卷寫詳解是極耗費教師時間的庶務
+  - AI 解法：提供標準答案後，請 AI 逐題撰寫「解析」。包含：考查知識點、正確選項原因、干擾選項錯誤點說明
+  - 成果：產出格式整齊的詳解 PDF/Google 文件，可直接列印發給學生，降低課堂上逐題檢討的時間壓力
+- **Required images**:
+  - extracted source image asset `![page_135_img_1.png](assets/extracted/page_135_img_1.png)`
+
+### Slide 133: 解題提示詞要先寫好：設定專業教師角色
+- **Layout role**: tutorial
+- **Title**: 解題提示詞要先寫好：設定專業教師角色
+- **Key points**:
+  - 關鍵提示詞：「1. 請你扮演一位擁有 20 年教學經驗的專業高中生物老師。我給你一份考卷，請你閱讀題目並總結其要考核的科學知識。 2. 這份檔案是官方解答，請閱讀並記住，隨後請一題一題給予邏輯嚴密、高中生易懂的詳細解析。」
+  - 效益：避免 AI 使用過於艱深的研究所術語或大學生理學知識來解釋高中題目，確保詳解親切易懂
+
+### Slide 134: 大語言模型解題比較：一次產生 50 題解析
+- **Layout role**: comparison
+- **Title**: 大語言模型解題比較：一次產生 50 題解析
+- **Key points**:
+  - 免費模型：可能在一次性處理 50 題時出現漏題、錯位或前後邏輯矛盾。
+  - 應對策略：
+  - 將考卷分段（每 10 題為一組）提供給 AI。
+  - 使用付費高級模型，或多個模型（ChatGPT、Gemini、Claude）交叉比對同一個難題的解析。
+
+### Slide 135: 實例：用 NotebookLM 建立班級解題資料庫
+- **Layout role**: case study
+- **Title**: 實例：用 NotebookLM 建立班級解題資料庫
+- **Key points**:
+  - 操作：建立名為「114學年度第一學期段考解答庫」的筆記本，上傳「考卷 PDF」與「教師手寫解析/官方解析」
+  - 學生提問體驗：學生在筆記本中輸入「請問第 18 題為什麼 (C) 選項不對？」
+  - 成果：NotebookLM 會從教師提供的解析中提取關鍵論點，精確指出 (C) 的錯誤在於水分輸送不需要消耗 ATP（主動運輸），而是靠蒸散作用（被動運輸），並標註出處
+
+### Slide 136: 解題之後：引導深層探究學習
+- **Layout role**: pedagogical value
+- **Title**: 解題之後：引導深層探究學習
+- **Key points**:
+  - 延伸提問：請 AI 針對錯題率最高的一道題目（例：光反應過程中的電子傳遞鏈），延伸設計 3 個「如果...會怎麼樣」的追問問題
+  - 目的：引導學生不只知道正確答案，更能理解底層的科學邏輯變動，達到舉一反三的效果
+- **Required images**:
+  - extracted source image asset `![page_139_img_1.png](assets/extracted/page_139_img_1.png)`
+
+### Slide 137: 視覺化解題：將錯題詳解轉化為資訊圖
+- **Layout role**: case study
+- **Title**: 視覺化解題：將錯題詳解轉化為資訊圖
+- **Key points**:
+  - 步驟：選取段考中錯最多的三個大題，將題目與 AI 詳解複製
+  - 轉換：使用 AI 資訊圖工具（如 Napkin AI 或 Canva AI），自動將這些文字解析轉換為包含箭頭、比較表格與圖標的「錯題急救資訊圖」
+  - 效益：以極具視覺衝擊力的圖表，加深學生對易錯知識點的記憶
+- **Required images**:
+  - extracted source image asset `![page_140_img_1.png](assets/extracted/page_140_img_1.png)`
+
+### Slide 138: 利用 AI 分段生成解題教學投影片
+- **Layout role**: tutorial
+- **Title**: 利用 AI 分段生成解題教學投影片
+- **Key points**:
+  - 工作流：不要一次把 40 題丟給簡報軟體。先將考卷依單元（如：細胞學 10 題、遺傳學 10 題）分類
+  - 生成：分批次導入 Gamma AI，請它生成「第一單元：細胞構造段考題解析簡報」
+  - 成果：每道題配一頁投影片，左邊放題目與選項，右邊放結構化的解題步驟與錯因分析
+
+### Slide 139: 圖表題詳解：AI 自動標註與圖解
+- **Layout role**: case study
+- **Title**: 圖表題詳解：AI 自動標註與圖解
+- **Key points**:
+  - 痛點：生物科考卷中包含大量的圖表題（例如：光照強度與光合作用速率關係圖），單純文字解析很難說清楚
+  - AI 解決方案：上傳圖表，請 Gemini 1.5 Pro 在圖表上標註關鍵轉折點（如光飽和點、光補償點），並在下方寫出詳細的斜率分析與數據解讀說明，讓答案一目了然
+
+### Slide 140: 專業課程解題的「安全防線」
+- **Layout role**: technical detail
+- **Title**: 專業課程解題的「安全防線」
+- **Key points**:
+  - 痛點：生物學中有許多精細的學術爭議或新舊課綱說法差異，單一 AI 容易產生幻覺
+  - 實務策略：
+  - 多大模型測試：同時用 ChatGPT、Gemini 與 Claude 解同一題，比對答案是否一致
+  - 教師人工複審：AI 的解析定位為「初稿」，教師必須進行最後的學術正確性把關，確保教學內容無誤
+
+### Slide 141: 手機拍照：從紙本到 AI 解答的極速通道
+- **Layout role**: user flow
+- **Title**: 手機拍照：從紙本到 AI 解答的極速通道
+- **Key points**:
+  - 操作流程：教師或學生使用手機拍攝紙本試卷上的某一道難題
+  - 處理：將照片傳送至對話框
+  - 解答：AI 即時讀取圖片中的文字與圖表，並在幾秒鐘內給出詳盡的解答思路，特別適合自習課或在家自學時的即時救急
+
+### Slide 142: 自建 AI 助教：客製化 GPTs 與 Gemini Gems
+- **Layout role**: tool guide
+- **Title**: 自建 AI 助教：客製化 GPTs 與 Gemini Gems
+- **Key points**:
+  - 定位：為自己量身打造的專用 AI。教師可上傳自己的教學 PPT 與學校過往考卷作為「知識庫」
+  - 功能設定：設定 System Prompt：「你是一位麗山高中的生物科 AI 助教，只會根據上傳的知識庫出題與解題...」
+  - 效益：學生登入後即可直接與該 AI 助教互動，獲得高度符合學校授課風格的學習支持
+
+### Slide 143: NotebookLM：以專業講義建立答疑資料庫
+- **Layout role**: tutorial
+- **Title**: NotebookLM：以專業講義建立答疑資料庫
+- **Key points**:
+  - 操作：將教師歷年撰寫的「選修生物學講義全套」上傳至 NotebookLM
+  - 特點：當學生提問時，AI 僅會從這套講義中尋找答案，並明確給出引用的講義章節與頁碼
+  - 價值：建立起一個由教師智財權護航、零幻覺、極具權威性的「課堂小百科」
+- **Required images**:
+  - extracted source image asset `![page_150_img_1.png](assets/extracted/page_150_img_1.png)`
+
+### Slide 144: 聯網解題：Felo Search / Perplexity 的實務
+- **Layout role**: tutorial
+- **Title**: 聯網解題：Felo Search / Perplexity 的實務
+- **Key points**:
+  - 操作：當遇到極具爭議的考題（例如：某種新型植物激素的受體機制）時，直接在 Felo Search 中提問
+  - 檢索機制：AI 會聯網檢索最新的學術期刊（如 PubMed、Nature），並將最新的科研論文結論整理出來，作為解答該題的科學證據，確保解題與時俱進
+  - --
+
+
+## 第十二編：成績計算與教學行政管理
+
+### Slide 145: 第十二編：成績計算與教學行政管理
+- **Layout role**: section divider
+- **Title**: 第十二編：成績計算與教學行政管理
+- **Key points**:
+  - 教學行政中繁瑣的成績計算與統計痛點
+  - 使用 AI 視覺辨識登記手寫成績
+  - 自製多班級成績管理工具的實踐
+
+### Slide 146: AI 視覺辨識：手寫卷成績登記自動化
+- **Layout role**: user flow
+- **Title**: AI 視覺辨識：手寫卷成績登記自動化
+- **Key points**:
+  - 痛點：手寫卷批改完後，逐一在 Excel 輸入學號與成績非常耗時且容易看錯行
+  - AI 解法：將批改完、寫有分數的試卷封面一字排開拍照，或將成績登記表拍照
+  - 處理：將照片傳給 ChatGPT，請它自動辨識照片中的「學生姓名/學號」與「手寫紅字分數」，並直接整理成 Excel 表格格式供教師複製貼上
+- **Required images**:
+  - extracted source image asset `![page_155_img_1.png](assets/extracted/page_155_img_1.png)`
+
+### Slide 147: 專屬工具：多班級成績管理系統
+- **Layout role**: tool card
+- **Title**: 專屬工具：多班級成績管理系統
+- **Key points**:
+  - 開發故事：為了解決多個授課班級成績加權、統計與排名計算的複雜需求，利用 AI 協同設計的專用成績工具
+  - 線上版連結：[https://froglssh.github.io/multi-class-grades-management/](https://froglssh.github.io/multi-class-grades-management/)
+  - 離線版下載：[Google 雲端硬碟下載](https://drive.google.com/file/d/1R6uhNXCTc2jTiEtucNBs8meN9PSi2-Zo/view)
+  - 功能：支援多班級學生成績匯入、各項段考與平時加權統計、及自動導出成績報告單
