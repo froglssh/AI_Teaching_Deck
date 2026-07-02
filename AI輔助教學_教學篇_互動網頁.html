@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 人工智慧輔助 IA 智能增強 ｜ 教學篇 — 臺北市麗山高中 林獻升老師</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber:#E8870E; --amber-d:#C26A00;
+    --teal:#0E8C8C; --teal-d:#0A6B6B;
+    --indigo:#3A4DB0;
+
+    /* light theme (default) */
+    --bg:#FBF8F3;
+    --card:#FFFFFF;
+    --ink:#1E2330;
+    --ink-soft:#46506A;
+    --line:#E7E0D4;
+    --th-bg:#1E2330;
+    --amber-soft:#FBEBD3; --amber-text:#C26A00;
+    --teal-soft:#D7F0EF;  --teal-text:#0A6B6B;
+    --indigo-soft:#E3E7FA;--indigo-text:#3A4DB0;
+    --chip-bg:#F2EDE3;
+    --feat-bg:linear-gradient(135deg,#FFF7EC,#FBEBD3); --feat-border:#F0DCB8;
+    --feat-bg-t:linear-gradient(135deg,#ECFAF9,#D7F0EF); --feat-border-t:#BBE5E3;
+    --row-alt:#FCFAF6;
+    --shadow:0 6px 24px rgba(30,35,48,.08);
+    --shadow-h:0 14px 38px rgba(30,35,48,.16);
+    --bar-bg:rgba(251,248,243,.92);
+    --radius:18px;
+  }
+  [data-theme="dark"]{
+    --bg:#10131C;
+    --card:#1A1F2E;
+    --ink:#ECEFF6;
+    --ink-soft:#A9B2C6;
+    --line:#2B3346;
+    --th-bg:#27304a;
+    --amber-soft:rgba(232,135,14,.18); --amber-text:#F4A93C;
+    --teal-soft:rgba(14,140,140,.22);  --teal-text:#3FC9C9;
+    --indigo-soft:rgba(88,108,210,.25);--indigo-text:#9AA8EE;
+    --chip-bg:#232A3B;
+    --feat-bg:linear-gradient(135deg,#241E13,#2A2114); --feat-border:#4A3B1E;
+    --feat-bg-t:linear-gradient(135deg,#10241F,#0F2A2A); --feat-border-t:#1E4A48;
+    --row-alt:#1E2434;
+    --shadow:0 6px 24px rgba(0,0,0,.35);
+    --shadow-h:0 14px 38px rgba(0,0,0,.5);
+    --bar-bg:rgba(16,19,28,.9);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Noto Sans TC',system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);
+    line-height:1.85;font-size:20px;-webkit-font-smoothing:antialiased;
+    transition:background .3s,color .3s;
+  }
+  h1,h2,h3,.serif{font-family:'Noto Serif TC','Noto Sans TC',serif}
+
+  /* 導覽 */
+  header.topbar{position:sticky;top:0;z-index:50;background:var(--bar-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:background .3s}
+  .topbar .inner{max-width:1200px;margin:0 auto;padding:12px 22px 10px}
+  .toprow{display:flex;align-items:center;gap:14px}
+  .brand{display:flex;align-items:center;gap:13px;font-weight:900;font-size:27px;color:var(--ink)}
+  .brand .logo{width:46px;height:46px;border-radius:13px;flex:none;background:linear-gradient(135deg,var(--amber),var(--amber-d));color:#fff;display:grid;place-items:center;font-size:21px;font-weight:900;box-shadow:0 4px 12px rgba(232,135,14,.4)}
+  nav.secnav{display:flex;gap:1px;flex-wrap:nowrap;overflow-x:auto;margin-top:9px;-ms-overflow-style:none;scrollbar-width:none}
+  nav.secnav::-webkit-scrollbar{display:none}
+  nav.secnav a{color:var(--ink-soft);text-decoration:none;font-size:13px;font-weight:500;padding:5px 8px;border-radius:7px;transition:.18s;white-space:nowrap}
+  nav.secnav a:hover{background:var(--amber-soft);color:var(--amber-text)}
+  .theme-btn{flex:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:20px;display:grid;place-items:center;transition:.2s;box-shadow:var(--shadow)}
+  .theme-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:70px 22px 64px;
+    background:radial-gradient(1100px 400px at 85% -10%, rgba(232,135,14,.20), transparent 60%),
+      radial-gradient(900px 420px at 5% 110%, rgba(14,140,140,.18), transparent 60%),
+      linear-gradient(180deg,#22283A,#131824);}
+  .hero .wrap{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);padding:7px 16px;border-radius:999px;font-size:15.5px;font-weight:500;letter-spacing:.5px;margin-bottom:24px}
+  .eyebrow b{color:#FFC777}
+  .hero h1{font-size:clamp(36px,5.6vw,64px);line-height:1.18;font-weight:900;letter-spacing:1px}
+  .hero h1 .hl{color:#FFB04A}
+  .hero .sub-en{margin-top:13px;font-size:clamp(16px,2.2vw,23px);color:#C8CEDC;font-weight:500;letter-spacing:1.4px}
+  .hero .subtitle{margin-top:18px;font-family:'Noto Serif TC',serif;font-size:clamp(19px,2.6vw,26px);font-weight:700;color:#FFD9A0;letter-spacing:1px}
+  .formula{margin-top:30px;display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);padding:16px 26px;border-radius:16px}
+  .formula .term{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(24px,3.2vw,35px)}
+  .formula .arrow{color:#FFB04A;font-size:30px;font-weight:900}
+  .formula .note{font-size:16.5px;color:#AEB6C9;font-weight:400}
+  .author{margin-top:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:16.5px;color:#D5DAE6}
+  .author .pill{background:rgba(255,255,255,.10);padding:6px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16)}
+  .author .pill b{color:#FFC777}
+
+  /* 四大面向 */
+  .domains{max-width:1200px;margin:-38px auto 0;padding:0 22px;position:relative;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .domain{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow);text-align:center;transition:.2s}
+  .domain:hover{transform:translateY(-4px);box-shadow:var(--shadow-h)}
+  .domain .ic{font-size:30px;display:block;margin-bottom:8px}
+  .domain h3{font-size:22px;color:var(--ink);margin-bottom:4px}
+  .domain p{font-size:15px;color:var(--ink-soft);line-height:1.6}
+  .domain.cur{border-color:var(--amber);box-shadow:0 8px 26px rgba(232,135,14,.22)}
+  .domain.cur .tag{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:#fff;background:var(--amber);padding:2px 10px;border-radius:999px}
+
+  /* 區段 */
+  main{max-width:1200px;margin:0 auto;padding:0 22px}
+  section{padding:58px 0 6px;scroll-margin-top:72px}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:26px}
+  .sec-num{flex:none;width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,var(--amber),var(--amber-d));color:#fff;display:grid;place-items:center;font-size:22px;font-weight:900;font-family:'Noto Serif TC',serif;box-shadow:0 6px 16px rgba(232,135,14,.3)}
+  .sec-head.teal .sec-num{background:linear-gradient(135deg,var(--teal),var(--teal-d));box-shadow:0 6px 16px rgba(14,140,140,.28)}
+  .sec-head.indigo .sec-num{background:linear-gradient(135deg,#4A5DC4,#2E3C92);box-shadow:0 6px 16px rgba(58,77,176,.3)}
+  .sec-head h2{font-size:clamp(27px,3.5vw,36px);line-height:1.25}
+  .sec-head .lead{color:var(--ink-soft);font-size:17.5px;margin-top:5px;font-weight:500}
+
+  .grid{display:grid;gap:18px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow);transition:.2s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-h)}
+  .card .badge{display:inline-block;font-size:13.5px;font-weight:700;letter-spacing:.4px;padding:4px 11px;border-radius:999px;margin-bottom:12px;background:var(--amber-soft);color:var(--amber-text)}
+  .card .badge.t{background:var(--teal-soft);color:var(--teal-text)}
+  .card .badge.i{background:var(--indigo-soft);color:var(--indigo-text)}
+  a.badge{text-decoration:none;transition:.15s}
+  a.badge::after{content:"↗";font-size:.85em;margin-left:3px;opacity:.6;font-weight:700}
+  a.badge:hover{filter:brightness(.94)}a.badge:hover::after{opacity:1}
+  .card h3{font-size:21px;margin-bottom:8px;color:var(--ink);display:flex;align-items:center;gap:9px;line-height:1.35}
+  .card h3 .dot{width:10px;height:10px;border-radius:50%;background:var(--amber);flex:none}
+  .card p{font-size:16.5px;color:var(--ink-soft);line-height:1.7}
+  .card ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:6px}
+  .card ul li{font-size:15.5px;color:var(--ink-soft);padding-left:19px;position:relative;line-height:1.6}
+  .card ul li::before{content:"▸";position:absolute;left:0;color:var(--amber);font-weight:900}
+  .card.teal ul li::before{color:var(--teal)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+  .chip{font-size:14.5px;font-weight:500;background:var(--chip-bg);color:var(--ink-soft);padding:5px 12px;border-radius:8px;border:1px solid var(--line)}
+
+  .feature{background:var(--feat-bg);border:1px solid var(--feat-border);border-left:5px solid var(--amber);border-radius:14px;padding:18px 22px;margin-top:18px}
+  .feature.teal{background:var(--feat-bg-t);border-color:var(--feat-border-t);border-left-color:var(--teal)}
+  .feature h4{font-size:18.5px;margin-bottom:5px;color:var(--ink)}
+  .feature p{font-size:16.5px;color:var(--ink-soft)}
+  .feature a{color:var(--amber-text);word-break:break-all}
+
+  .pillrow{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+  .toolpill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:15.5px;font-weight:500;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none;transition:.18s}
+  .toolpill .d{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  .toolpill.a .d{background:var(--amber)}
+  a.toolpill:hover{transform:translateY(-2px);border-color:var(--amber);color:var(--amber-text);box-shadow:var(--shadow-h)}
+  a.toolpill::after{content:"↗";font-size:12px;opacity:.5;font-weight:700}
+  a.toolpill:hover::after{opacity:1}
+  /* 卡片標題內的工具連結 */
+  .tlink{color:inherit;text-decoration:none;transition:.15s}
+  .tlink::after{content:"↗";font-size:.62em;vertical-align:super;opacity:.5;margin-left:3px;font-weight:700}
+  .tlink:hover{color:var(--amber-text);text-decoration:underline}
+  .card.teal .tlink:hover,.sec-head.teal ~ * .card.teal .tlink:hover{color:var(--teal-text)}
+
+  /* 表格 */
+  .table-wrap{overflow-x:auto;border-radius:14px;box-shadow:var(--shadow);border:1px solid var(--line);margin-top:8px}
+  table{border-collapse:collapse;width:100%;min-width:680px;background:var(--card);font-size:15.5px}
+  thead th{background:var(--th-bg);color:#fff;font-weight:700;padding:12px 15px;text-align:left;font-size:16px}
+  tbody th{background:var(--amber-soft);color:var(--amber-text);font-weight:700;text-align:left;padding:12px 15px;white-space:nowrap;border-bottom:1px solid var(--line)}
+  tbody td{padding:12px 15px;color:var(--ink-soft);border-bottom:1px solid var(--line);line-height:1.6;vertical-align:top}
+  tbody tr:nth-child(even) td{background:var(--row-alt)}
+
+  /* 流程步驟 */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:var(--shadow)}
+  .step .n{font-size:13px;font-weight:700;color:var(--teal-text);background:var(--teal-soft);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;margin-bottom:9px}
+  .step h4{font-size:17px;margin-bottom:4px;color:var(--ink)}
+  .step p{font-size:15px;color:var(--ink-soft);line-height:1.6}
+
+  /* 題型轉換 */
+  .transform{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .tf{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow);font-size:15.5px;color:var(--ink-soft);flex:1;min-width:150px}
+  .tf b{color:var(--ink);display:block;margin-bottom:2px}
+
+  /* 結語 */
+  .closing{margin:60px 0 0;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#22283A,#131824);color:#fff;padding:50px 38px;text-align:center}
+  .closing h2{font-size:clamp(26px,3.5vw,35px);margin-bottom:13px;color:#fff}
+  .closing p{color:#C8CEDC;font-size:18px;max-width:800px;margin:0 auto 24px;line-height:1.85}
+  .closing .quote{font-family:'Noto Serif TC',serif;font-size:clamp(20px,2.7vw,28px);color:#FFB04A;font-weight:700;line-height:1.7}
+  .closing .mini{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .closing .mini span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:7px 14px;border-radius:999px;font-size:15px}
+
+  footer{text-align:center;padding:36px 22px 50px;color:var(--ink-soft);font-size:15.5px}
+  footer b{color:var(--amber-text)}
+
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--teal));width:0;z-index:60}
+
+  @media(max-width:980px){.domains{grid-template-columns:repeat(2,1fr)}.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(2,1fr)}nav.secnav{display:none}}
+  @media(max-width:560px){body{font-size:18px}.domains{grid-template-columns:1fr}.g4,.g3,.g2{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.hero{padding:52px 18px 54px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="topbar">
+  <div class="inner">
+    <div class="toprow">
+      <div class="brand"><span class="logo">AI</span><span>AI 輔助教學 · 教學篇</span></div>
+      <button class="theme-btn" id="themeBtn" aria-label="切換明暗主題" title="切換明暗主題">🌙</button>
+    </div>
+    <nav class="secnav">
+      <a href="#llm">語言模型</a>
+      <a href="#vision">視覺互動</a>
+      <a href="#class">數位課堂</a>
+      <a href="#notes">數位筆記</a>
+      <a href="#board">繪圖白板</a>
+      <a href="#slides">簡報設計</a>
+      <a href="#image">圖片生成</a>
+      <a href="#trans">雙語翻譯</a>
+      <a href="#analysis">教材分析</a>
+      <a href="#mindmap">心智圖</a>
+      <a href="#design">課程教案</a>
+      <a href="#search">內容補充</a>
+      <a href="#quiz">測驗出題</a>
+      <a href="#answer">解題知識庫</a>
+      <a href="#grade">成績統計</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">🐸 AI 應用情境分享 <b>教學篇</b></div>
+    <h1>AI 人工智慧輔助<br><span class="hl">IA 智能增強</span></h1>
+    <div class="sub-en">Artificial Intelligence — Assisted Intelligence Augmentation</div>
+    <div class="subtitle">臺北市麗山高中　林獻升老師</div>
+
+    <div class="formula">
+      <span class="term">AI</span>
+      <span class="arrow">→</span>
+      <span class="term" style="color:#FFB04A">IA</span>
+      <span class="note">不是取代教師，而是放大教師與學生的能力</span>
+    </div>
+
+    <div class="author">
+      <span class="pill">生物科　<b>林獻升</b> 老師</span>
+      <span class="pill">臺北市立麗山高級中學</span>
+      <span class="pill">臺北市 111 學年度<b>特殊優良教師</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="domains">
+  <div class="domain cur"><span class="ic">📚</span><h3>教學</h3><p>課堂講授、教材設計、學習互動</p><span class="tag">本篇主題</span></div>
+  <div class="domain"><span class="ic">🔬</span><h3>實驗</h3><p>探究與實作、數據觀察與評量</p></div>
+  <div class="domain"><span class="ic">🧑‍🏫</span><h3>導師</h3><p>班級經營、學生輔導與溝通</p></div>
+  <div class="domain"><span class="ic">🗂️</span><h3>行政</h3><p>文件處理、資料整理與效率</p></div>
+</div>
+
+<main>
+
+<!-- 1 語言模型 -->
+<section id="llm">
+  <div class="sec-head"><div class="sec-num">1</div><div>
+    <h2>LLM 四大語言模型</h2>
+    <div class="lead">熟悉主流生成式 AI 工具的定位與特長，是 AI 輔助教學的起點。</div>
+  </div></div>
+  <div class="grid g4">
+    <div class="card"><span class="badge">OpenAI</span><h3><span class="dot"></span><a class="tlink" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></h3><p>最廣為人知的 AI 工具，通用問答、寫作、課程發想的全能助手。</p><ul><li>多模態：即時視訊與螢幕直播</li><li>聯網搜尋歷屆與時事題</li></ul></div>
+    <div class="card"><span class="badge i">Microsoft</span><h3><span class="dot" style="background:var(--indigo)"></span><a class="tlink" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a></h3><p>與微軟產品深度結合（根源 OpenAI），Win11 與 Edge 內建。</p><ul><li>Office 365 教育帳號可用</li><li>Edge PDF 語音視覺辨識</li></ul></div>
+    <div class="card"><span class="badge t">Google</span><h3><span class="dot" style="background:var(--teal)"></span><a class="tlink" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a></h3><p>與 Google 產品深度結合，可生成 Google 文件、串接 YT 與地圖。</p><ul><li>Gemini Live 即時鏡頭互動</li><li>Google AI Studio 多模態</li></ul></div>
+    <div class="card"><span class="badge">Anthropic</span><h3><span class="dot"></span><a class="tlink" href="https://claude.ai" target="_blank" rel="noopener">Claude</a></h3><p>擅長程式編輯與長文處理的 AI 工具（Opus／Sonnet 4 系列）。</p><ul><li>嚴謹的教材文本分析</li><li>結構化內容生成</li></ul></div>
+  </div>
+</section>
+
+<!-- 2 視覺互動 -->
+<section id="vision">
+  <div class="sec-head teal"><div class="sec-num">2</div><div>
+    <h2>AI 視覺互動（多模態即時辨識）</h2>
+    <div class="lead">讓 AI「看見」課本與螢幕，實現教材語音導讀與個人化即時答疑。</div>
+  </div></div>
+  <div class="grid g2">
+    <div class="card teal"><a class="badge t" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><h3><span class="dot" style="background:var(--teal)"></span>即時視訊功能</h3><p>開啟相機或螢幕直播，對著心臟循環、腎臟構造圖即時提問。</p><ul><li>iPad 程式雙開：邊看講義邊對話</li><li>學生可獨立操作互動自學</li></ul></div>
+    <div class="card teal"><a class="badge t" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a><h3><span class="dot" style="background:var(--teal)"></span>視覺辨識（Win 內建）</h3><p>Edge PDF 閱讀器語音視覺辨識，朗讀並解析細胞、物種多樣性圖表。</p><ul><li>實現教材語音導讀</li><li>提升自學動機與理解效率</li></ul></div>
+    <div class="card teal"><a class="badge t" href="https://aistudio.google.com" target="_blank" rel="noopener">Google AI Studio</a><h3><span class="dot" style="background:var(--teal)"></span>Gemini Live ／ AI Studio</h3><p>Stream Realtime 即時串流，開啟教材即可請 AI 回答問題。</p><ul><li>Talk／Show／Share screen 三模式</li><li>空間理解、視訊分析、地圖瀏覽</li></ul></div>
+    <div class="card teal"><a class="badge t" href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chrome</a><h3><span class="dot" style="background:var(--teal)"></span>Chrome AI ／ 問問 Gemini</h3><p>瀏覽器開啟檔案即可視訊對話，分享頁面讓 AI 解說生物影像。</p><ul><li>免安裝、隨開隨用</li><li>適合課堂即時補充</li></ul></div>
+  </div>
+  <div class="feature teal"><h4>💡 教學亮點</h4><p>多模態視覺辨識把「課本上的圖」變成「能對話的圖」——學生對腎元、心臟瓣膜或氣孔有疑問時，可即時獲得個人化解說，大幅降低自學門檻。</p></div>
+</section>
+
+<!-- 3 數位課堂 -->
+<section id="class">
+  <div class="sec-head indigo"><div class="sec-num">3</div><div>
+    <h2>AI 輔助教學 · 數位課堂教室</h2>
+    <div class="lead">以 Google Classroom 與 Padlet 為核心，建立教學資源庫與即時互動空間。</div>
+  </div></div>
+  <div class="grid g2">
+    <div class="card"><a class="badge i" href="https://classroom.google.com" target="_blank" rel="noopener">Google Classroom</a><h3><span class="dot" style="background:var(--indigo)"></span>教學資源庫與任務派發</h3><p>綁定學生帳號，為每門課建立專屬教室。</p><ul><li>教材資源：課本、習作、重點手冊</li><li>教學內容：投影片＋補充資料＋影片＋網址</li><li>探討活動：顯微觀察、DNA 粗萃取、病毒等</li><li>分派學習任務與線上考試作業</li></ul></div>
+    <div class="card"><a class="badge" href="https://padlet.com" target="_blank" rel="noopener">Padlet APP</a><h3><span class="dot"></span>QRcode 即時協作牆</h3><p>QRcode 快速分享、免登錄、瀏覽器直接開啟，課堂門檻最低。</p><ul><li>課程教材線上瀏覽</li><li>學生作品快速分享討論</li><li>Padlet AI：文字轉語音、AI 影片產出</li><li>校際／國際交流分享會</li></ul></div>
+  </div>
+  <div class="feature"><h4>🧰 Padlet TA — 教師的 AI 助教</h4><p>內建 Lesson plan（教案）、Class activity（活動）、Multiple choice（選擇題）、Text leveler（難度分級）、Image generator（圖像生成）等，一鍵把備課素材生出初稿。</p></div>
+</section>
+
+<!-- 4 數位筆記 -->
+<section id="notes">
+  <div class="sec-head"><div class="sec-num">4</div><div>
+    <h2>數位教材筆記</h2>
+    <div class="lead">把教材匯入 AI 筆記本，自動整理、摘要、提問、解答並可共享。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill a" href="https://notebooklm.google.com" target="_blank" rel="noopener"><span class="d"></span>Google NotebookLM</a>
+    <a class="toolpill a" href="https://www.notion.so" target="_blank" rel="noopener"><span class="d"></span>Notion AI</a>
+    <a class="toolpill a" href="https://www.goodnotes.com" target="_blank" rel="noopener"><span class="d"></span>GoodNotes AI</a>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="badge">NotebookLM</span><h3><span class="dot"></span>教材資料庫問答</h3><p>匯入多份教材 PDF，問題提問 → AI 分析回應 → 筆記儲存。</p><ul><li>整理、摘要、提問、解答</li><li>產生報告、心智圖、測驗</li><li>語音／影片摘要、筆記本共用</li></ul></div>
+    <div class="card"><span class="badge i">Notion AI</span><h3><span class="dot" style="background:var(--indigo)"></span>教材匯入建立筆記簿</h3><p>教材 Word 檔匯入建立筆記簿，AI 針對頁面評論與補充。</p><ul><li>提升寫作、翻譯、加長</li><li>網路文章截取存入後續處理</li></ul></div>
+    <div class="card"><span class="badge t">GoodNotes AI</span><h3><span class="dot" style="background:var(--teal)"></span>邊上課邊提問</h3><p>在手寫筆記中圈選課本內容，即時補充或提問獲得解答。</p><ul><li>結合手寫與 AI 答疑</li><li>適合課堂同步使用</li></ul></div>
+  </div>
+  <div class="feature"><h4>📓 應用情境：2025 諾貝爾醫學獎 Treg 細胞</h4><p>把相關文獻丟進 NotebookLM，一鍵生成語音摘要、影片摘要、心智圖、報告、學習卡與測驗，整理成可分享共用的時事教材。</p></div>
+</section>
+
+<!-- 5 繪圖白板 -->
+<section id="board">
+  <div class="sec-head teal"><div class="sec-num">5</div><div>
+    <h2>繪圖白板學習</h2>
+    <div class="lead">用數位白板畫出課本概念圖，即畫即分享，把「動手畫」變成合作學習。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill" href="https://www.apple.com/tw/freeform/" target="_blank" rel="noopener"><span class="d"></span>Apple 無邊際</a>
+    <a class="toolpill" href="https://www.ipevo.com" target="_blank" rel="noopener"><span class="d"></span>IPEVO Whiteboard</a>
+    <a class="toolpill" href="https://padlet.com" target="_blank" rel="noopener"><span class="d"></span>Padlet APP</a>
+    <a class="toolpill" href="https://www.canva.com" target="_blank" rel="noopener"><span class="d"></span>Canva</a>
+  </div>
+  <div class="grid g3">
+    <div class="card teal"><span class="badge t">傳統 vs 數位</span><h3><span class="dot" style="background:var(--teal)"></span>顏色多元、可直接上傳</h3><p>傳統白板畫完需拍照才能上傳；繪圖 APP 顏色多元，畫完即可直接分享至 Padlet。</p></div>
+    <div class="card teal"><span class="badge t">概念建構</span><h3><span class="dot" style="background:var(--teal)"></span>繪製系統構造圖</h3><p>學生親手繪製消化系統、根尖、心臟構造圖，對照模型與課本加深理解。</p></div>
+    <div class="card teal"><span class="badge t">合作學習</span><h3><span class="dot" style="background:var(--teal)"></span>虛擬白板共創</h3><p>無邊記 App 多人腦力激盪；Padlet 共用白板即時投影，AI 亦可輔助生成圖片。</p></div>
+  </div>
+</section>
+
+<!-- 6 簡報設計 -->
+<section id="slides">
+  <div class="sec-head indigo"><div class="sec-num">6</div><div>
+    <h2>教學簡報設計</h2>
+    <div class="lead">由提示詞、文件或知識庫一鍵生成教學簡報，並可對話迭代與美化。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill" href="https://gamma.app" target="_blank" rel="noopener"><span class="d"></span>Gamma</a>
+    <a class="toolpill" href="https://gemini.google.com" target="_blank" rel="noopener"><span class="d"></span>Gemini（Slides）</a>
+    <a class="toolpill" href="https://notebooklm.google.com" target="_blank" rel="noopener"><span class="d"></span>NotebookLM</a>
+    <a class="toolpill" href="https://www.canva.com" target="_blank" rel="noopener"><span class="d"></span>Canva AI</a>
+    <a class="toolpill" href="https://felo.ai" target="_blank" rel="noopener"><span class="d"></span>Felo search</a>
+    <a class="toolpill" href="https://skywork.ai" target="_blank" rel="noopener"><span class="d"></span>Skywork AI</a>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="badge">Gamma</span><h3><span class="dot"></span>課程簡介與教學簡報</h3><p>輸入主題即生成精美簡報，如《AI 創新應用與實作》、常見統計圖應用。</p></div>
+    <div class="card"><span class="badge t">Gemini</span><h3><span class="dot" style="background:var(--teal)"></span>生成 Google Slides</h3><p>提示詞「製作 Google Slides」即匯出簡報，可後續對話修改迭代、調整字體字級。</p><ul><li>付費版可用 Nano Banana 優化圖片</li></ul></div>
+    <div class="card"><span class="badge i">NotebookLM</span><h3><span class="dot" style="background:var(--indigo)"></span>製作圖表與簡報</h3><p>由知識庫直接生成資訊圖表與簡報，如 2025 諾貝爾獎深度解讀。</p></div>
+    <div class="card"><span class="badge i">Canva AI</span><h3><span class="dot" style="background:var(--indigo)"></span>教學簡報生成</h3><p>描述想法即生成設計、社群、簡報、行銷素材。</p></div>
+    <div class="card"><span class="badge t">Felo search</span><h3><span class="dot" style="background:var(--teal)"></span>搜尋後生成簡報</h3><p>網路＋資料庫搜尋後直接生成教學用簡報網頁。</p></div>
+    <div class="card"><span class="badge">Skywork AI</span><h3><span class="dot"></span>圖文並茂簡報</h3><p>AI agent 設計精美且圖文並茂的簡報版面。</p></div>
+  </div>
+</section>
+
+<!-- 7 圖片生成 -->
+<section id="image">
+  <div class="sec-head"><div class="sec-num">7</div><div>
+    <h2>教學圖片生成</h2>
+    <div class="lead">對話式生圖修圖、風格轉換、概念圖解，甚至生成教學影片。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill a" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="d"></span>ChatGPT（Images 2.0）</a>
+    <a class="toolpill a" href="https://copilot.microsoft.com" target="_blank" rel="noopener"><span class="d"></span>Copilot</a>
+    <a class="toolpill a" href="https://gemini.google.com" target="_blank" rel="noopener"><span class="d"></span>Gemini ／ Veo</a>
+    <a class="toolpill a" href="https://www.canva.com" target="_blank" rel="noopener"><span class="d"></span>Canva</a>
+    <a class="toolpill a" href="https://www.recraft.ai" target="_blank" rel="noopener"><span class="d"></span>Recraft AI</a>
+    <a class="toolpill a" href="https://picwish.com" target="_blank" rel="noopener"><span class="d"></span>Pic Wish</a>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="badge">ChatGPT</span><h3><span class="dot"></span>對話式生圖與修圖</h3><p>對話生成情境圖、風格轉換（吉卜力風）、玩具公仔禮盒等創作。</p></div>
+    <div class="card t" style="border-color:var(--line)"><span class="badge t">Gemini ／ Veo</span><h3><span class="dot" style="background:var(--teal)"></span>概念圖解與教學影片</h3><p>生成高中生物核心概念圖解、希爾反應實驗圖解；Veo 由文字生成教學影片。</p><ul><li>四步驟：定義目標→撰寫指令→Veo 生成→人類迴圈(HITL)</li></ul></div>
+    <div class="card"><span class="badge i">Win11 Copilot</span><h3><span class="dot" style="background:var(--indigo)"></span>系統內建生圖</h3><p>系統內建，生成樹木年輪等教學圖片，與微軟產品深度結合。</p></div>
+    <div class="card"><span class="badge">Pic Wish</span><h3><span class="dot"></span>圖片後續處理</h3><p>去背、修復、加陰影、去浮水印等各種圖片後製。</p></div>
+    <div class="card"><span class="badge">Recraft AI</span><h3><span class="dot"></span>向量與插圖生成</h3><p>生成可控風格的教學插圖與向量圖。</p></div>
+    <div class="card"><span class="badge">Canva</span><h3><span class="dot"></span>設計素材生成</h3><p>結合範本快速產出教學視覺素材。</p></div>
+  </div>
+</section>
+
+<!-- 8 雙語翻譯 -->
+<section id="trans">
+  <div class="sec-head teal"><div class="sec-num">8</div><div>
+    <h2>雙語教學助手</h2>
+    <div class="lead">即時翻譯教材與課堂語音，支援雙語教學與國際交流。</div>
+  </div></div>
+  <div class="grid g3">
+    <div class="card teal"><a class="badge t" href="https://immersivetranslate.com" target="_blank" rel="noopener">沈浸式翻譯</a><h3><span class="dot" style="background:var(--teal)"></span>雙語對照網頁翻譯</h3><p>最受歡迎的瀏覽器擴展，免費即時翻譯外文、PDF、ePub、字幕。</p></div>
+    <div class="card teal"><a class="badge t" href="https://translate.google.com" target="_blank" rel="noopener">Google 即時翻譯</a><h3><span class="dot" style="background:var(--teal)"></span>Gemini Live Translate</h3><p>即時語音翻譯；iPad 程式雙開可即時講課翻譯。</p></div>
+    <div class="card teal"><span class="badge t">自製工具</span><h3><span class="dot" style="background:var(--teal)"></span>AI 設計翻譯網頁程式</h3><p>由 AI 輔助自製的即時講課翻譯工具，支援語音輸出。</p></div>
+  </div>
+  <div class="feature teal"><h4>🛠️ 林老師自製工具（AI 輔助開發）</h4><p>多功能翻譯工具，把課堂講解同步轉成英／日文並語音輸出，協助雙語與國際課程：<br><a href="https://froglssh.github.io/multi-functional-translator-online/" target="_blank" rel="noopener">▸ 線上版</a>　|　<a href="https://drive.google.com/file/d/1cyxFmudNOnKVNNDJ6F156j-6aEXIF6jM/view" target="_blank" rel="noopener">▸ 離線版（Google Drive）</a></p></div>
+</section>
+
+<!-- 9 教材分析 -->
+<section id="analysis">
+  <div class="sec-head"><div class="sec-num">9</div><div>
+    <h2>教材內容分析</h2>
+    <div class="lead">借助 ChatGPT、Claude 全面比較各版本教材，作為選書與備課的客觀參考。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill a" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="d"></span>ChatGPT</a>
+    <a class="toolpill a" href="https://claude.ai" target="_blank" rel="noopener"><span class="d"></span>Claude</a>
+  </div>
+  <div class="chips" style="margin-bottom:18px">
+    <span class="chip">教材難易度</span><span class="chip">章節順序</span><span class="chip">授課邏輯</span><span class="chip">課文易懂性</span><span class="chip">圖文整合</span><span class="chip">知識點與補充</span><span class="chip">探討活動設計</span><span class="chip">版面美編</span>
+  </div>
+  <h3 style="font-size:20px;margin:6px 0 11px;color:var(--ink)">第一部分 ｜ 教材面分析</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>分析項目</th><th>版本 A</th><th>版本 B</th><th>版本 C</th><th>版本 D</th><th>版本 E</th></tr></thead>
+    <tbody>
+      <tr><th>教材難易度</th><td>詳細深入，適合有基礎學生，歷史背景較難懂</td><td>簡潔明瞭、重點突出，適合基礎學習</td><td>逐層深入、難易適中，具體例子輔助</td><td>簡明扼要、難度較低，以實驗輔助理解</td><td>條理清晰、逐層遞進，強調調節機制</td></tr>
+      <tr><th>章節授課邏輯</th><td>重歷史背景與概念發展，循序漸進</td><td>直接介紹結構與功能，偏重概念</td><td>層次分明、逐步深入，邏輯性強</td><td>由組織到系統，重點突出</td><td>強調調節機制，由基礎到深入</td></tr>
+      <tr><th>課文易理解性</th><td>敘述詳細但專有名詞多</td><td>簡潔、語言簡單，適合初學者</td><td>生活化例子，幫助理解抽象概念</td><td>簡明但缺深入探討</td><td>描述清晰、結合生活例子</td></tr>
+    </tbody>
+  </table></div>
+  <h3 style="font-size:18px;margin:24px 0 11px;color:var(--ink)">第二部分 ｜ 圖片與版面呈現分析</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>分析項目</th><th>版本 A</th><th>版本 B</th><th>版本 C</th><th>版本 D</th><th>版本 E</th></tr></thead>
+    <tbody>
+      <tr><th>圖文整合程度</th><td>部分配顯微與手繪圖，未全面</td><td>多數配圖示，組織結構整合佳</td><td>圖文結合適中，視覺輔助佳</td><td>圖片較少但圖示清晰</td><td>整合效果佳，尤其生理機制圖</td></tr>
+      <tr><th>重要知識點實照</th><td>有實照但畫質較低</td><td>實照多、品質高</td><td>用實照說明系統結構</td><td>圖少、以手繪為主</td><td>多配實照、品質高易觀察</td></tr>
+      <tr><th>版面舒適性</th><td>密集、留白少</td><td>簡潔、留白適度</td><td>圖文間隔適中</td><td>乾淨但留白不足</td><td>清晰、留白多，利筆記</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 10 心智圖 -->
+<section id="mindmap">
+  <div class="sec-head teal"><div class="sec-num">10</div><div>
+    <h2>教材心智圖大綱</h2>
+    <div class="lead">把教科書與課外補充內容，圖像化、系統化統整為一張全局圖。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill" href="https://monica.im" target="_blank" rel="noopener"><span class="d"></span>Monica</a>
+    <a class="toolpill" href="https://felo.ai" target="_blank" rel="noopener"><span class="d"></span>Felo search</a>
+    <a class="toolpill" href="https://mapify.so" target="_blank" rel="noopener"><span class="d"></span>Mapify</a>
+    <a class="toolpill" href="https://xmind.app" target="_blank" rel="noopener"><span class="d"></span>Xmind AI</a>
+    <a class="toolpill" href="https://albus.org" target="_blank" rel="noopener"><span class="d"></span>Albus AI</a>
+  </div>
+  <div class="grid g2">
+    <div class="card teal"><span class="badge t">Monica</span><h3><span class="dot" style="background:var(--teal)"></span>課本教材心智圖生成</h3><p>由課本生成「生物多樣性與保育」心智圖，涵蓋意義、層次、保育策略與個人參與。</p></div>
+    <div class="card teal"><span class="badge t">Felo search</span><h3><span class="dot" style="background:var(--teal)"></span>搜尋後生成心智圖</h3><p>「114 年學測自然科試題分析」整合試題特色、統計資料與準備建議。</p></div>
+    <div class="card teal"><span class="badge t">Mapify</span><h3><span class="dot" style="background:var(--teal)"></span>教學簡報心智圖生成</h3><p>由「人體消化系統」簡報生成結構心智圖：過程、結構功能、消化液與吸收。</p></div>
+    <div class="card teal"><span class="badge t">Xmind ／ Albus</span><h3><span class="dot" style="background:var(--teal)"></span>匯入文件自動生成</h3><p>Xmind 匯入 md 檔生成心智圖；Albus 由 AI 生成關鍵詞文章、圖片、影片心智圖。</p></div>
+  </div>
+</section>
+
+<!-- 11 課程教案 -->
+<section id="design">
+  <div class="sec-head"><div class="sec-num">11</div><div>
+    <h2>課程教案設計</h2>
+    <div class="lead">從戶外教育到探究實驗，AI 協助生成完整教案、學習單與評量。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill a" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="d"></span>ChatGPT</a>
+    <a class="toolpill a" href="https://gemini.google.com" target="_blank" rel="noopener"><span class="d"></span>Gemini</a>
+    <a class="toolpill a" href="https://www.napkin.ai" target="_blank" rel="noopener"><span class="d"></span>Napkin AI</a>
+    <a class="toolpill a" href="https://classroom.google.com" target="_blank" rel="noopener"><span class="d"></span>Classroom × Gemini</a>
+    <a class="toolpill a" href="https://www.edcafe.ai" target="_blank" rel="noopener"><span class="d"></span>Edcafe AI</a>
+  </div>
+  <div class="card" style="margin-bottom:18px"><span class="badge t">ChatGPT 課程設計範例</span><h3><span class="dot" style="background:var(--teal)"></span>戶外教育：臺北大縱走課程</h3><p style="margin-bottom:6px">結合 ChatGPT 輔助任務導引與資料整理，發展語文／科技／公民／生命教育跨域素養。</p>
+    <div class="flow">
+      <div class="step"><div class="n">目標</div><h4>課程目標</h4><p>認識步道生態與地景、培養規劃與環境觀察素養。</p></div>
+      <div class="step"><div class="n">前</div><h4>課前任務</h4><p>用 AI 蒐集背景、交通、地貌，規劃分組主題。</p></div>
+      <div class="step"><div class="n">中</div><h4>課中實作</h4><p>戶外踏查拍照記錄，AI 撰寫觀察紀錄、生成 QR 知識碼。</p></div>
+      <div class="step"><div class="n">後</div><h4>課後展現</h4><p>整合成海報／PPT／影片，匯出數位學習歷程。</p></div>
+    </div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="badge t">Gemini</span><h3><span class="dot" style="background:var(--teal)"></span>探究實驗教案</h3><p>「校園植物蒸散量比較」——上傳實驗紀錄與講義 PDF，生成探究課程設計。</p></div>
+    <div class="card"><span class="badge i">Classroom × Gemini</span><h3><span class="dot" style="background:var(--indigo)"></span>內容與資源生成</h3><p>規劃教案大綱、生成測驗、建立評分量表、發想專題靈感、解決常見誤解。</p></div>
+    <div class="card"><span class="badge">Edcafe AI</span><h3><span class="dot"></span>探討教學計畫</h3><p>「氣孔構造與功能」——自動生成目標、詞彙表與探究實驗計畫。</p></div>
+  </div>
+  <div class="feature teal"><h4>🎨 Napkin AI ｜ 課程說明視覺化</h4><p>把高二自主學習微課程的文字介紹，一鍵轉成拼圖式、燈泡式的視覺化說明圖，提升課程吸引力。</p></div>
+</section>
+
+<!-- 12 內容補充 -->
+<section id="search">
+  <div class="sec-head teal"><div class="sec-num">12</div><div>
+    <h2>課程內容補充（AI Search）</h2>
+    <div class="lead">AI 搜尋整合網路與資料庫，為課堂補充時事、案例與深度資料。</div>
+  </div></div>
+  <div class="grid g3">
+    <div class="card"><a class="badge" href="https://arc.net/search" target="_blank" rel="noopener">Arc search</a><h3><span class="dot"></span>AI 網路搜尋補充</h3><p>輸入「藍嬰症」即彙整定義、先天性原因與治療，並附多來源與影片。</p></div>
+    <div class="card"><a class="badge" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><h3><span class="dot"></span>歷屆與時事題搜尋</h3><p>分析生物科時事題特色：醫療議題、食品科學、科學史、圖表數據、跨章節整合。</p></div>
+    <div class="card"><a class="badge t" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a><h3><span class="dot" style="background:var(--teal)"></span>Google 文件直接生成</h3><p>課外補充（如 mRNA 疫苗原理）可直接生成文件，並搜尋 YT 影片與地圖。</p></div>
+    <div class="card"><a class="badge i" href="https://felo.ai" target="_blank" rel="noopener">Felo search</a><h3><span class="dot" style="background:var(--indigo)"></span>網路＋資料庫雙來源</h3><p>校務規定查詢生成心智圖，更可創建互動式網頁與教學簡報。</p></div>
+    <div class="card"><a class="badge" href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a><h3><span class="dot"></span>知名 AI 搜索程式</h3><p>專業搜尋，如「斑腿樹蛙入侵對生態的影響」，附完整來源與圖文。</p></div>
+    <div class="card"><span class="badge i">Deep Research</span><h3><span class="dot" style="background:var(--indigo)"></span>深度研究報告</h3><p>OpenAI／Gemini／Felo／Perplexity 對「2025 諾貝爾獎」多角度深度解析。</p></div>
+  </div>
+  <div class="feature"><h4>📰 應用情境：2025 諾貝爾獎時事教材</h4><p>以生理醫學獎「調節性 T 細胞（Treg）與 FOXP3 基因」為例，AI Deep Research 自動整理得獎者、貢獻、機制與對世界的影響，直接成為素養導向時事補充教材。</p></div>
+</section>
+
+<!-- 13 測驗出題 -->
+<section id="quiz">
+  <div class="sec-head indigo"><div class="sec-num">13</div><div>
+    <h2>測驗考試出題</h2>
+    <div class="lead">AI 分析教材 → 創建題目 → 即時評量，並能自由轉換題型與設計新題。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill" href="https://kahoot.com" target="_blank" rel="noopener"><span class="d"></span>Kahoot</a>
+    <a class="toolpill" href="https://wayground.com" target="_blank" rel="noopener"><span class="d"></span>Wayground（Quizizz AI）</a>
+    <a class="toolpill" href="https://www.edcafe.ai" target="_blank" rel="noopener"><span class="d"></span>Edcafe AI</a>
+    <a class="toolpill" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="d"></span>ChatGPT／Claude／Gemini</a>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="badge i">Kahoot</span><h3><span class="dot" style="background:var(--indigo)"></span>AI 分析教材出題</h3><p>運用 AI 或上傳 PDF 建立 Kahoot，創建題目 → 即時評量。</p></div>
+    <div class="card"><span class="badge i">Wayground</span><h3><span class="dot" style="background:var(--indigo)"></span>Quizizz AI 出題</h3><p>匯入工作表／PDF、用 AI 生成或從頭建立，AI 分析教材即時評量。</p></div>
+    <div class="card"><span class="badge">Edcafe AI</span><h3><span class="dot"></span>實驗小考生成</h3><p>如「酵素實驗小考」混合型測驗，附作答報告與 QR 分享。</p></div>
+  </div>
+  <div class="feature"><h4>🔁 AI 大模型提示詞出題 — 一題變多題</h4><p>用提示詞把現成題目自由轉換題型，快速擴充題庫：</p>
+    <div class="transform">
+      <div class="tf"><b>單選 → 單選</b>潤飾敘述、提供答案與解析</div>
+      <div class="tf"><b>單選 → 多選</b>擴成五個選項、指定答案數量</div>
+      <div class="tf"><b>單選 → 問答</b>改為申論題與參考答案</div>
+      <div class="tf"><b>單選 → 閱讀測驗</b>自編 500 字短文＋單選＋多選</div>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><span class="badge">新題設計</span><h3><span class="dot"></span>閱讀測驗題</h3><p>由長篇文章（如《生命之舞》染色體異常）生成單選、多選、問答題組。</p></div>
+    <div class="card"><span class="badge">YT Summary</span><h3><span class="dot"></span>影片轉題目</h3><p>用 ChatGPT＆Claude 擷取 YouTube 逐字稿與摘要，再出閱讀測驗題。</p></div>
+    <div class="card"><span class="badge t">Gemini Canvas</span><h3><span class="dot" style="background:var(--teal)"></span>圖文整合出題</h3><p>Canvas 文字＋Nano Banana 圖，如心臟構造標示題；AI Studio 可影片分析。</p></div>
+  </div>
+</section>
+
+<!-- 14 解題知識庫 -->
+<section id="answer">
+  <div class="sec-head"><div class="sec-num">14</div><div>
+    <h2>出題 · 解答 · 解析（建立知識庫）</h2>
+    <div class="lead">先寫好解題提示詞，建立專業知識庫，讓 AI 出題、解題、產生解析與圖解。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill a" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="d"></span>ChatGPT（GPTs／專案）</a>
+    <a class="toolpill a" href="https://gemini.google.com" target="_blank" rel="noopener"><span class="d"></span>Gemini（Gem）</a>
+    <a class="toolpill a" href="https://claude.ai" target="_blank" rel="noopener"><span class="d"></span>Claude</a>
+    <a class="toolpill a" href="https://notebooklm.google.com" target="_blank" rel="noopener"><span class="d"></span>NotebookLM 知識庫</a>
+    <a class="toolpill a" href="https://www.perplexity.ai" target="_blank" rel="noopener"><span class="d"></span>Felo ／ Perplexity</a>
+  </div>
+  <div class="grid g2">
+    <div class="card"><span class="badge">解題流程</span><h3><span class="dot"></span>整份考卷分析與詳解</h3><p>ChatGPT 分析整份段考考試特點，逐題詳解。</p><ul><li>解題提示詞要先寫好（角色設定→逐題分析）</li><li>大模型解題比較：一次產生 50 題答案與解釋</li><li>紙本考卷拍照擷取文字 → 複製到 AI 求解</li></ul></div>
+    <div class="card"><span class="badge i">建立知識庫</span><h3><span class="dot" style="background:var(--indigo)"></span>專屬出題／解題助手</h3><p>用專業知識建立回應資料庫，降低專業課程的錯誤率。</p><ul><li>ChatGPTs：創建 GPT「出題大師」</li><li>ChatGPT 專案／Gemini Gem「考卷出改解題」</li><li>NotebookLM 從筆記簿找解答、延伸知識點</li></ul></div>
+  </div>
+  <div class="feature"><h4>🖼️ 解答可視化</h4><p>NotebookLM 由段考題目與解答產生<b>複習資訊圖</b>、<b>解題簡報</b>與<b>實驗圖解</b>（如酵素活性氣泡高度圖），把抽象解析變成清楚的視覺說明。Copilot／GPT／Claude 也可內建於 Word 中直接出題與解析。</p></div>
+</section>
+
+<!-- 15 成績統計 -->
+<section id="grade">
+  <div class="sec-head teal"><div class="sec-num">15</div><div>
+    <h2>成績計算與統計</h2>
+    <div class="lead">AI 視覺辨識手寫考卷與成績，自動批改、回饋並管理多班級成績。</div>
+  </div></div>
+  <div class="pillrow">
+    <a class="toolpill" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="d"></span>ChatGPT</a>
+    <a class="toolpill" href="https://gemini.google.com" target="_blank" rel="noopener"><span class="d"></span>Gemini</a>
+    <a class="toolpill" href="https://claude.ai" target="_blank" rel="noopener"><span class="d"></span>Claude</a>
+    <a class="toolpill" href="https://notebooklm.google.com" target="_blank" rel="noopener"><span class="d"></span>NotebookLM</a>
+  </div>
+  <div class="grid g2">
+    <div class="card teal"><span class="badge t">視覺評分</span><h3><span class="dot" style="background:var(--teal)"></span>手寫考卷批改</h3><p>拍照上傳手寫考卷（含文字與算式），AI 圖像辨識並依評分原則與 Rubrics 給分。</p><ul><li>自動判斷答案、回得分細項</li><li>產出個別化回饋，指出概念漏洞與訂正建議</li><li>已存入解題知識庫與學習歷程</li></ul></div>
+    <div class="card teal"><span class="badge t">自製工具</span><h3><span class="dot" style="background:var(--teal)"></span>多班級成績管理</h3><p>AI 輔助開發的成績管理系統：Excel 匯入、分項配分、平均權位、統計分析。</p><ul><li>跨學年、跨班級集中管理</li><li><a class="tlink" href="https://froglssh.github.io/multi-class-grades-management/" target="_blank" rel="noopener">線上版工具</a></li><li><a class="tlink" href="https://drive.google.com/file/d/1R6uhNXCTc2jTiEtucNBs8meN9PSi2-Zo/view" target="_blank" rel="noopener">離線版（Google Drive）</a></li></ul></div>
+  </div>
+</section>
+
+<!-- 結語 -->
+<div class="closing">
+  <h2>從「AI」到「IA」——科技放大教與學的能量</h2>
+  <p>十五個主題串成一條完整路徑：認識工具、讓 AI 看見教材、建立數位課堂與筆記、用白板與圖像深化理解、設計簡報與教案、補充時事、出題解題建立知識庫，再到視覺批改與成績統計。AI 不取代教師的專業，而是把備課、互動、評量與差異化教學的能量加倍放大。</p>
+  <div class="quote">「探尋繽紛美妙的生物，編織幸福圓滿的生命。」</div>
+  <div class="mini">
+    <span>語言模型</span><span>視覺互動</span><span>數位課堂</span><span>數位筆記</span><span>繪圖白板</span>
+    <span>簡報設計</span><span>圖片生成</span><span>雙語翻譯</span><span>教材分析</span><span>心智圖</span>
+    <span>課程教案</span><span>內容補充</span><span>測驗出題</span><span>解題知識庫</span><span>成績統計</span>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p><b>AI 人工智慧輔助 IA 智能增強 · 教學篇</b>　｜　臺北市立麗山高級中學　Taipei Municipal Lishan High School</p>
+  <p style="margin-top:6px">生物科　林獻升老師　·　探尋繽紛美妙的生物，編織幸福圓滿的生命</p>
+</footer>
+
+<script>
+  // 明暗主題
+  const root=document.documentElement, tbtn=document.getElementById('themeBtn');
+  function setTheme(t){root.setAttribute('data-theme',t);tbtn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('lssh-theme',t)}catch(e){}}
+  (function(){let t='light';try{t=localStorage.getItem('lssh-theme')|| (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}setTheme(t)})();
+  tbtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+
+  // 進度條
+  const bar=document.getElementById('progress');
+  addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
+  // 導覽高亮
+  const links=[...document.querySelectorAll('nav.secnav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  addEventListener('scroll',()=>{let idx=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<150)idx=i;});links.forEach(l=>l.style.color='');if(links[idx])links[idx].style.color='var(--amber-text)';});
+</script>
+</body>
+</html>
