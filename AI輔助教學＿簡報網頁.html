@@ -51,6 +51,21 @@
     width:48px;text-align:center;border:none;background:transparent;color:var(--ink);
     font-size:15px;font-weight:700;outline:none;
   }
+  .sec-box select{
+    border:none;background:transparent;color:var(--ink);font-size:13px;font-weight:700;
+    outline:none;cursor:pointer;max-width:160px;
+  }
+  .sec-box select option{color:#111}
+  .chk{
+    display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--sub);
+    border:1px solid var(--line);border-radius:10px;padding:6px 10px;cursor:pointer;user-select:none;
+  }
+  .chk input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer}
+  .playing-badge{
+    position:absolute;top:16px;left:16px;background:rgba(47,109,246,.9);color:#fff;
+    padding:5px 13px;border-radius:20px;font-size:13px;font-weight:700;z-index:6;display:none;
+  }
+  .playing-badge.show{display:block}
 
   /* ---------- Stage (two panels) ---------- */
   .stage{
@@ -174,6 +189,19 @@
       <div class="sec-box" title="每頁停留秒數">
         每頁 <input id="secInput" type="number" min="1" max="120" value="8"> 秒
       </div>
+      <label class="chk" title="開啟後，自動播放會唸完整頁旁白才換頁；關閉則依上方秒數換頁">
+        <input type="checkbox" id="waitSpeak" checked> 朗讀完才換頁
+      </label>
+      <div class="sec-box" title="選擇朗讀語音（清單依電腦已安裝的語音而定，建議選「Google」語音最自然）">
+        語音 <select id="voiceSel"></select>
+      </div>
+      <div class="sec-box" title="朗讀語速">
+        語速 <input id="rateIn" type="number" min="0.5" max="2" step="0.05" value="0.95" style="width:44px"> ×
+      </div>
+      <div class="sec-box" title="朗讀音調">
+        音調 <input id="pitchIn" type="number" min="0.5" max="1.5" step="0.05" value="1.0" style="width:44px"> ♪
+      </div>
+      <button class="tool" id="speakBtn" title="朗讀目前這一頁的旁白">🔊 朗讀旁白</button>
       <button class="tool" id="fsBtn" title="全螢幕播放（僅簡報畫面）">⛶ 全螢幕播放</button>
       <button class="tool" id="themeBtn" title="切換背景">🌙 深色</button>
     </div>
@@ -181,6 +209,7 @@
 
   <div class="stage" id="stage">
     <div class="panel-img">
+      <div class="playing-badge" id="badge">播放中…</div>
       <button class="arrow prev" id="prevBtn" aria-label="上一頁">‹</button>
       <img id="slideImg" src="" alt="投影片">
       <button class="arrow next" id="nextBtn" aria-label="下一頁">›</button>
@@ -208,6 +237,7 @@
     <div class="fsbar">
       <button id="fsPrev" title="上一頁">‹</button>
       <button id="fsPlay" title="播放/暫停">⏸</button>
+      <button id="fsSpeak" title="朗讀旁白">🔊</button>
       <button id="fsNext" title="下一頁">›</button>
       <span class="fscount" id="fsCount">1 / 147</span>
       <span class="fssec">秒數 <input id="fsSec" type="number" min="1" max="120" value="8"></span>
@@ -224,8 +254,13 @@
   const imgSrc = n => "origin_image/slide_" + pad(n) + ".png";
 
   let idx = 0;              // 0-based index into S array (display order = file order 1..147)
-  let autoOn = false, autoTimer = null;
-  let fsOpen = false, fsPlay = true, fsTimer = null;
+  let autoTimer = null;     // 秒數計時模式用
+  let fsOpen = false;
+
+  // ---- 旁白朗讀狀態 ----
+  let narrating=false, zhVoice=null, allVoices=[], advanceTimer=null, speakGen=0;
+  const synth = window.speechSynthesis;
+  const badge = document.getElementById('badge');
 
   // elements
   const slideImg=document.getElementById('slideImg');
@@ -275,24 +310,125 @@
     requestAnimationFrame(fitText);
   }
 
-  function go(i){ idx=(i%TOTAL+TOTAL)%TOTAL; render(); }
+  function go(i){ idx=(i%TOTAL+TOTAL)%TOTAL; render(); if(narrating) speakCurrent(); }
   function next(){ go(idx+1); }
   function prev(){ go(idx-1); }
 
-  // ---- autoplay (image+text view) ----
+  // ---- 語音朗讀（Web Speech API，離線可用）----
+  function voiceScore(v){
+    const n=(v.name||'')+' '+(v.voiceURI||''); let s=0;
+    if(/zh[-_]TW|zh[-_]Hant|cmn/i.test(v.lang)) s+=40;
+    else if(/^zh|zh[-_]CN|zh[-_]HK/i.test(v.lang)) s+=20;
+    if(/google/i.test(n)) s+=30;
+    if(/enhanced|premium|加強|進階|neural|natural/i.test(n)) s+=25;
+    if(/siri/i.test(n)) s+=20;
+    if(/美嘉|meijia|台湾|臺灣|taiwan/i.test(n)) s+=10;
+    return s;
+  }
+  const voiceSel=document.getElementById('voiceSel');
+  function buildVoiceList(){
+    if(!synth) return;
+    allVoices=synth.getVoices();
+    const gtw=allVoices.filter(v=>/google/i.test(v.name) && /zh[-_]TW|zh[-_]Hant|國語|臺灣|台灣/i.test((v.name||'')+' '+v.lang));
+    voiceSel.innerHTML='';
+    if(gtw.length){
+      gtw.forEach(v=>{
+        const o=document.createElement('option');
+        o.value=allVoices.indexOf(v);
+        o.textContent=v.name+' ('+v.lang+') ✨線上';
+        voiceSel.appendChild(o);
+      });
+      voiceSel.value=allVoices.indexOf(gtw[0]); zhVoice=gtw[0];
+    }else{
+      const o=document.createElement('option');
+      o.value=''; o.textContent='找不到 Google 國語（臺灣）— 請用 Chrome 並連網';
+      voiceSel.appendChild(o); zhVoice=null;
+    }
+  }
+  if(synth){
+    buildVoiceList();
+    synth.onvoiceschanged=buildVoiceList;
+    voiceSel.addEventListener('change',()=>{
+      zhVoice=allVoices[parseInt(voiceSel.value)]||null;
+      if(narrating) speakCurrent();
+    });
+  }
+  const rateIn=document.getElementById('rateIn');
+  const pitchIn=document.getElementById('pitchIn');
+  function buildChunks(s){
+    const out=[];
+    [s.title, s.text].forEach(t=>{
+      (t||'').split(/(?<=[。！？!?；;：])/).forEach(p=>{ p=p.trim(); if(p) out.push(p); });
+    });
+    return out;
+  }
+  function speakCurrent(){
+    if(!synth){ alert('您的瀏覽器不支援語音朗讀，請改用 Chrome 或 Edge。'); return; }
+    const gen=++speakGen;
+    synth.cancel(); clearTimeout(advanceTimer);
+    const chunks=buildChunks(S[idx]);
+    const rate=Math.min(2,Math.max(0.5,parseFloat(rateIn.value)||0.95));
+    const pitch=Math.min(1.5,Math.max(0.5,parseFloat(pitchIn.value)||1));
+    let i=0;
+    (function step(){
+      if(gen!==speakGen) return;
+      if(i>=chunks.length){
+        if(narrating && idx<TOTAL-1){ advanceTimer=setTimeout(()=>{ if(narrating && gen===speakGen) go(idx+1); },900); }
+        else if(narrating){ stopPlay(); }
+        return;
+      }
+      const u=new SpeechSynthesisUtterance(chunks[i]);
+      u.lang='zh-TW'; if(zhVoice) u.voice=zhVoice; u.rate=rate; u.pitch=pitch;
+      u.onend=()=>{ if(gen!==speakGen) return; i++;
+        const gap = /[。！？!?]$/.test(chunks[i-1]) ? 260 : 90;
+        setTimeout(()=>{ if(gen===speakGen) step(); }, gap);
+      };
+      u.onerror=()=>{};
+      synth.speak(u);
+    })();
+  }
+
+  // ---- 統一播放控制 ----
+  // 勾選「朗讀完才換頁」→ 由旁白驅動，唸完整頁才換頁；不勾 → 依秒數固定換頁（無旁白）
   const secInput=document.getElementById('secInput');
   const autoBtn=document.getElementById('autoBtn');
+  const speakBtn=document.getElementById('speakBtn');
+  const waitSpeak=document.getElementById('waitSpeak');
   function secMs(){ let v=parseFloat(secInput.value)||8; if(v<1)v=1; return v*1000; }
-  function startAuto(){
-    autoOn=true; autoBtn.classList.add('active'); autoBtn.textContent='⏸ 停止播放';
-    clearInterval(autoTimer); autoTimer=setInterval(next,secMs());
+  function isPlaying(){ return !!autoTimer || narrating; }
+  function uiReset(){
+    autoBtn.classList.remove('active'); autoBtn.textContent='▶ 自動播放';
+    speakBtn.classList.remove('active'); speakBtn.textContent='🔊 朗讀旁白';
+    fsPlayBtn.textContent='▶'; fsSpeakBtn.textContent='🔊';
+    badge.classList.remove('show');
   }
-  function stopAuto(){
-    autoOn=false; autoBtn.classList.remove('active'); autoBtn.textContent='▶ 自動播放';
-    clearInterval(autoTimer);
+  function stopPlay(){
+    clearInterval(autoTimer); autoTimer=null;
+    narrating=false; if(synth) synth.cancel(); clearTimeout(advanceTimer);
+    uiReset();
   }
-  autoBtn.addEventListener('click',()=>autoOn?stopAuto():startAuto());
-  secInput.addEventListener('change',()=>{ if(autoOn) startAuto(); fsSec.value=secInput.value; });
+  function startTimer(){
+    stopPlay(); autoTimer=setInterval(next,secMs());
+    autoBtn.classList.add('active'); autoBtn.textContent='⏸ 停止播放';
+    fsPlayBtn.textContent='⏸';
+    badge.textContent='自動播放中…'; badge.classList.add('show');
+  }
+  function startNarrate(){
+    stopPlay(); narrating=true;
+    autoBtn.classList.add('active'); autoBtn.textContent='⏸ 停止播放';
+    speakBtn.classList.add('active'); speakBtn.textContent='⏹ 停止朗讀';
+    fsPlayBtn.textContent='⏸'; fsSpeakBtn.textContent='⏹';
+    badge.textContent='旁白朗讀中…'; badge.classList.add('show');
+    speakCurrent();
+  }
+  function startPlay(){ waitSpeak.checked ? startNarrate() : startTimer(); }
+  function togglePlay(){ isPlaying()?stopPlay():startPlay(); }
+
+  autoBtn.addEventListener('click',togglePlay);
+  speakBtn.addEventListener('click',()=>{ narrating?stopPlay():startNarrate(); });
+  secInput.addEventListener('change',()=>{ if(autoTimer) startTimer(); fsSec.value=secInput.value; });
+  rateIn.addEventListener('change',()=>{ if(narrating) speakCurrent(); });
+  pitchIn.addEventListener('change',()=>{ if(narrating) speakCurrent(); });
 
   // ---- theme ----
   const themeBtn=document.getElementById('themeBtn');
@@ -309,26 +445,25 @@
   const fsCount=document.getElementById('fsCount');
   const fsSec=document.getElementById('fsSec');
   const fsPlayBtn=document.getElementById('fsPlay');
-  function fsMs(){ let v=parseFloat(fsSec.value)||8; if(v<1)v=1; return v*1000; }
-  function fsTick(){ clearInterval(fsTimer); if(fsPlay&&fsOpen) fsTimer=setInterval(next,fsMs()); }
+  const fsSpeakBtn=document.getElementById('fsSpeak');
   function openFs(){
     fsOpen=true; fsOverlay.classList.add('on'); fsImg.src=imgSrc(S[idx].n);
     fsCount.textContent=(idx+1)+' / '+TOTAL; fsSec.value=secInput.value;
-    fsPlay=true; fsPlayBtn.textContent='⏸';
     if(fsOverlay.requestFullscreen) fsOverlay.requestFullscreen().catch(()=>{});
-    stopAuto(); fsTick();
+    if(!isPlaying()) startPlay();
   }
   function closeFs(){
-    fsOpen=false; fsOverlay.classList.remove('on'); clearInterval(fsTimer);
+    fsOpen=false; fsOverlay.classList.remove('on');
     if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
-    render();
+    stopPlay(); render();
   }
   document.getElementById('fsBtn').addEventListener('click',openFs);
   document.getElementById('fsExit').addEventListener('click',closeFs);
   document.getElementById('fsPrev').addEventListener('click',prev);
   document.getElementById('fsNext').addEventListener('click',next);
-  fsPlayBtn.addEventListener('click',()=>{ fsPlay=!fsPlay; fsPlayBtn.textContent=fsPlay?'⏸':'▶'; fsTick(); });
-  fsSec.addEventListener('change',()=>{ secInput.value=fsSec.value; fsTick(); });
+  fsPlayBtn.addEventListener('click',togglePlay);
+  fsSpeakBtn.addEventListener('click',()=>{ narrating?stopPlay():startNarrate(); });
+  fsSec.addEventListener('change',()=>{ secInput.value=fsSec.value; if(autoTimer) startTimer(); });
   document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&fsOpen) closeFs(); });
 
   // ---- nav buttons ----
@@ -365,6 +500,7 @@
   bindSwipe(fsOverlay);
 
   window.addEventListener('resize',()=>requestAnimationFrame(fitText));
+  window.addEventListener('beforeunload',()=>{ if(synth) synth.cancel(); });
 
   // init
   render();
